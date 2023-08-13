@@ -10,11 +10,25 @@ export default class App extends Component{
     }
 
     render() {
+        var that = this;
+
+        var _selectedPage = <Welcome pageChange={(p)=>that.setState({page: p})}/>;
+
+        switch (this.state.page){
+            case 0:
+                _selectedPage = <Welcome pageChange={(p)=>that.setState({page: p})}/>;
+                break;
+            case 1:
+                _selectedPage = <Welcome pageChange={(p)=>that.setState({page: p})}/>;
+                break;
+            case 2:
+                _selectedPage = <Welcome pageChange={(p)=>that.setState({page: p})}/>;
+                break;
+        }
+
         return (
             <div className="App">
-                {
-                    this.state.page == 0 ? <Welcome pageChange={(p)=>this.setState({page: p})}/> : <Welcome pageChange={(p)=>this.setState({page: p})}/>
-                }
+                {_selectedPage}
             </div>
         );
     }
