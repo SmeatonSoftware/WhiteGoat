@@ -19,8 +19,8 @@ export default class Welcome extends Component {
                         We Welcome You To Peruse Our Selection & Find Out More About Us!
                     </p>
                     <hr/>
-                    <button type="button" className="btn btn-outline-success" style={{minWidth:"10vw", marginRight:"1vw"}}>Browse Games</button>
-                    <button type="button" className="btn btn-outline-info" style={{minWidth:"10vw"}}>About Us</button>
+                    <button type="button" className="btn btn-outline-success" style={{minWidth:"10vw", marginRight:"1vw"}} onClick={()=>this.props.pageChange(1)}>Browse Games</button>
+                    <button type="button" className="btn btn-outline-info" style={{minWidth:"10vw"}} onClick={()=>this.props.pageChange(2)}>About Us</button>
                     <hr/>
                 </div>
             </div>

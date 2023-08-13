@@ -6,14 +6,14 @@ export default class App extends Component{
     constructor(props) {
         super(props);
 
-        this.state = {page: 0}
+        this.state = {page: 0};
     }
 
     render() {
         return (
             <div className="App">
                 {
-                    this.state.page == 0 ? <Welcome/> : <Welcome/>
+                    this.state.page == 0 ? <Welcome pageChange={(p)=>this.setState({page: p})}/> : <Welcome pageChange={(p)=>this.setState({page: p})}/>
                 }
             </div>
         );
