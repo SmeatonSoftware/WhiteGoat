@@ -1,6 +1,8 @@
 import './App.css';
 import Welcome from "./components/welcome";
 import {Component} from "react";
+import Browse from "./components/browse";
+import About from "./components/about";
 
 export default class App extends Component{
     constructor(props) {
@@ -19,10 +21,10 @@ export default class App extends Component{
                 _selectedPage = <Welcome pageChange={(p)=>that.setState({page: p})}/>;
                 break;
             case 1:
-                _selectedPage = <Welcome pageChange={(p)=>that.setState({page: p})}/>;
+                _selectedPage = <Browse pageChange={(p)=>that.setState({page: p})}/>;
                 break;
             case 2:
-                _selectedPage = <Welcome pageChange={(p)=>that.setState({page: p})}/>;
+                _selectedPage = <About pageChange={(p)=>that.setState({page: p})}/>;
                 break;
         }
 
