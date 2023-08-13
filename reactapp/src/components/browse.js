@@ -35,7 +35,7 @@ export default class Browse extends Component {
 
     render() {
         return <CenteredDiv height={98} sizerHeight={"vh"} width={50} sizerWidth={"vw"}>
-            <div className="card border-primary mb-3" style={{maxWidth: "50rem"}}>
+            <div className="card border-primary mb-3" style={{maxWidth: "50rem", minHeight: "20%"}}>
                 <h1 className="card-header">Browse White Goat Games
                     <button type="button" className="btn btn-outline-secondary btn-sm" style={{float:"right"}} onClick={()=>this.props.pageChange(0)}>Back</button>
                 </h1>
@@ -47,7 +47,11 @@ export default class Browse extends Component {
                 </div>
             </div>
 
-            {this.renderGame()}
+            <div style={{overflow: "scroll", maxHeight:"78%"}}>
+                {this.renderGame()}
+                {this.renderGame()}
+                {this.renderGame()}
+            </div>
         </CenteredDiv>;
     }
 }
