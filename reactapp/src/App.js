@@ -3,6 +3,7 @@ import Welcome from "./components/welcome";
 import {Component} from "react";
 import Browse from "./components/browse";
 import About from "./components/about";
+import Login from "./components/login";
 
 export default class App extends Component {
     constructor(props) {
@@ -31,6 +32,9 @@ export default class App extends Component {
                 break;
             case 2:
                 _selectedPage = <About pageChange={cPage}/>;
+                break;
+            case 3:
+                _selectedPage = <Login pageChange={cPage}/>;
                 break;
         }
 

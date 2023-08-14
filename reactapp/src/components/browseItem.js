@@ -24,10 +24,11 @@ export default class BrowseItem extends Component{
                                 Version 2 is almost ready for testing. Its for 3 - 6 players. When it releases, there
                                 will be pdfs to print out so you can play it wherever you are.
                             </p>
-                            <button type="button" className="btn btn-outline-info"
-                                    style={{minWidth: "10vw", marginRight: "1vw"}}>Download
+                            <button type="button" className="btn btn-outline-success"
+                                    style={{minWidth: "10vw", marginRight: "1vw"}}>Buy
                             </button>
-                            <button type="button" className="btn btn-outline-success" style={{minWidth: "10vw"}}>Buy
+                            <button type="button" className="btn btn-outline-info"
+                                    style={{minWidth: "10vw"}}>Download
                             </button>
                         </td>
                     </tr>
