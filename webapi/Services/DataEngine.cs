@@ -6,8 +6,17 @@ namespace webapi.Services
     {
         public Dictionary<int,T> values = new Dictionary<int,T>();
 
-        public void Add(T item)
+        private int GenerateId()
         {
+            int maxId = values.Count > 0 ? values.Keys.Max() : 1;
+            return maxId + 3;
+        }
+
+        public void Add(T item, bool generateID = false)
+        {
+            if (generateID)
+                item.Id = GenerateId();
+
             if (!item.Id.HasValue)
                 throw new ArgumentNullException("Expected An ID!");
 

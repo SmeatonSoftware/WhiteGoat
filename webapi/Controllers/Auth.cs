@@ -5,7 +5,7 @@ using webapi.Services;
 
 namespace webapi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/auth")]
     [ApiController]
     public class Auth : ControllerBase
     {
@@ -16,17 +16,25 @@ namespace webapi.Controllers
             userData = _userData;
         }
 
+        private static bool IsStrongPassword(string pword)
+        {
+            return pword.Length>5;
+        }
+
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromQuery] string email, [FromQuery] string password)
         {
+            if (email.Length<5 || !IsStrongPassword(password))
+                return Problem("Email Is Invalid Or Password Is Weak", statusCode: 409);
+
             if (userData.TryFind(x => x.Email == email, out _))
                 return Problem("Email In Use!",statusCode: 409);
 
             var u = new User(email, password);
 
-            userData.Add(u);
+            userData.Add(u, true);
 
-            return Ok();
+            return Ok(new { message = "Account Created" });
         }
 
         [HttpPost("login")]
@@ -36,7 +44,7 @@ namespace webapi.Controllers
             {
                 if (Hashing.Match(password+u.PwordSalt,u.HashedPassword))
                 {
-                    return Ok();
+                    return Ok(new { message = "Login Completed" });
                 }
             }
 
