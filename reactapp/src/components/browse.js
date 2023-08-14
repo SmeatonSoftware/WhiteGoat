@@ -1,6 +1,7 @@
 import {Component} from "react";
 import CenteredDiv from "./centeredDiv";
 import BrowseItem from "./browseItem";
+import GoatBar from "./goatBar";
 
 export default class Browse extends Component {
     constructor(props) {
@@ -10,12 +11,7 @@ export default class Browse extends Component {
     render() {
         return <CenteredDiv height={98} sizerHeight={"vh"} width={50} sizerWidth={"vw"}>
             <div className="card border-primary mb-3" style={{maxWidth: "50rem", minHeight: "20%"}}>
-                <h1 className="card-header">Browse White Goat Games
-                    <button type="button" className="btn btn-outline-info btn-sm" style={{float: "right"}}
-                            onClick={() => this.props.pageChange(0)}>Back</button>
-                    <button type="button" className="btn btn-outline-success btn-sm" style={{float: "right", marginRight: "1vw"}}
-                            onClick={() => this.props.pageChange(3)}>Login / Signup</button>
-                </h1>
+                <GoatBar title={"Browse White Goat Games"} pageChange={this.props.pageChange}/>
                 <div className="card-body">
                     <div className="form-group">
                         <input type="email" className="form-control" id="exampleInputEmail1"

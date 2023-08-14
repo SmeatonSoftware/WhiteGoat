@@ -1,6 +1,6 @@
 import {Component} from "react";
 
-export default class BrowseItem extends Component{
+export default class BrowseItem extends Component {
     constructor(props) {
         super(props);
     }
