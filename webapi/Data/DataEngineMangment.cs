@@ -1,4 +1,5 @@
-﻿using webapi.Data.Classes;
+﻿using LiteDB;
+using webapi.Data.Classes;
 
 namespace webapi.Data
 {
@@ -7,12 +8,16 @@ namespace webapi.Data
         public static DataEngine<User>? userEngine;
         public static DataEngine<Session>? sessionEngine;
 
+        public static LiteDatabase db;
+
         public static void Init(WebApplicationBuilder builder)
         {
-            userEngine = new DataEngine<User>();
+            db = new LiteDatabase("./database.db");
+
+            userEngine = new DataEngine<User>(db.GetCollection<User>("users"));
             builder.Services.AddSingleton(userEngine);
 
-            sessionEngine = new DataEngine<Session>();
+            sessionEngine = new DataEngine<Session>(db.GetCollection<Session>("sessions"));
             builder.Services.AddSingleton(sessionEngine);
         }
     }
