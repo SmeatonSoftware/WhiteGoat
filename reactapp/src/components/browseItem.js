@@ -6,7 +6,7 @@ export default class BrowseItem extends Component {
     }
 
     render() {
-        return <div className="card border-primary mb-3" style={{maxWidth: "50rem"}}>
+        return <div className="card border-primary mb-3" style={{width: "100%"}}>
             <h3 className="card-header">Treacherous Waters</h3>
             <div className="card-body">
                 <table>

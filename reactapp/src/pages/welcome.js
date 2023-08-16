@@ -1,7 +1,7 @@
 import {Component} from "react";
 import logo from "../assets/logo.png";
-import CenteredDiv from "./centeredDiv";
-import GoatBar from "./goatBar";
+import CenteredDiv from "../components/centeredDiv";
+import GoatBar from "../components/goatBar";
 
 export default class Welcome extends Component {
     constructor(props) {
@@ -9,8 +9,8 @@ export default class Welcome extends Component {
     }
 
     render() {
-        return <CenteredDiv height={70} sizerHeight={"vh"} width={50} sizerWidth={"vw"}>
-            <div className="card border-primary mb-3" style={{maxWidth: "50rem"}}>
+        return <CenteredDiv height={98} sizerHeight={"vh"} width={98} sizerWidth={"vw"}>
+            <div className="card border-primary mb-3" style={{width: "100%"}}>
                 <GoatBar title={"White Goat Games"} page={0} pageChange={this.props.pageChange}/>
                 <div className="card-body">
                     <img src={logo} className="App-logo" alt="logo"/>

@@ -1,5 +1,5 @@
 import {Component} from "react";
-import CenteredDiv from "./centeredDiv";
+import CenteredDiv from "../components/centeredDiv";
 import APIRequest from "../shared/request";
 
 export default class Login extends Component {

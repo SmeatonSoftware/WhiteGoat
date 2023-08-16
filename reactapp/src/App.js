@@ -1,9 +1,9 @@
 import './App.css';
-import Welcome from "./components/welcome";
+import Welcome from "./pages/welcome";
 import {Component} from "react";
-import Browse from "./components/browse";
-import About from "./components/about";
-import Login from "./components/login";
+import Browse from "./pages/browse";
+import About from "./pages/about";
+import Login from "./pages/login";
 
 export default class App extends Component {
     constructor(props) {

@@ -1,7 +1,7 @@
 import {Component} from "react";
-import CenteredDiv from "./centeredDiv";
-import BrowseItem from "./browseItem";
-import GoatBar from "./goatBar";
+import CenteredDiv from "../components/centeredDiv";
+import BrowseItem from "../components/browseItem";
+import GoatBar from "../components/goatBar";
 
 export default class Browse extends Component {
     constructor(props) {
@@ -9,8 +9,8 @@ export default class Browse extends Component {
     }
 
     render() {
-        return <CenteredDiv height={98} sizerHeight={"vh"} width={50} sizerWidth={"vw"}>
-            <div className="card border-primary mb-3" style={{maxWidth: "50rem", minHeight: "20%"}}>
+        return <CenteredDiv height={98} sizerHeight={"vh"} width={98} sizerWidth={"vw"}>
+            <div className="card border-primary mb-3" style={{width:"100%", minHeight: "20%"}}>
                 <GoatBar title={"Browse White Goat Games"} pageChange={this.props.pageChange}/>
                 <div className="card-body">
                     <div className="form-group">
