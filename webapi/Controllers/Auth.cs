@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using webapi.Data;
+using webapi.Data.Classes;
 using webapi.Services;
 
 namespace webapi.Controllers
@@ -33,6 +34,8 @@ namespace webapi.Controllers
             var u = new User(email, password);
 
             userData.Add(u, true);
+
+
 
             return Ok(new { message = "Account Created" });
         }

@@ -1,6 +1,6 @@
 ﻿using webapi.Services;
 
-namespace webapi.Data
+namespace webapi.Data.Classes
 {
     public class User : DataClass
     {
@@ -14,7 +14,7 @@ namespace webapi.Data
         {
             Email = email;
             PwordSalt = Salt.GenerateSalt();
-            HashedPassword = Hashing.Hash(password+PwordSalt);
+            HashedPassword = Hashing.Hash(password + PwordSalt);
         }
     }
 }

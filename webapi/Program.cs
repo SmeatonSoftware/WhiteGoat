@@ -1,10 +1,12 @@
 using webapi.Data;
-using webapi.Services;
+using webapi.Data.Classes;
 
 namespace webapi
 {
     public class Program
     {
+        
+
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -22,9 +24,7 @@ namespace webapi
                                   });
             });
 
-            var ud = new DataEngine<User>();
-
-            builder.Services.AddSingleton(ud);
+            DataEngineMangment.Init(builder);
 
             var app = builder.Build();
 

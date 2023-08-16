@@ -1,10 +1,8 @@
-﻿using webapi.Data;
-
-namespace webapi.Services
+﻿namespace webapi.Data
 {
     public class DataEngine<T> where T : DataClass
     {
-        public Dictionary<int,T> values = new Dictionary<int,T>();
+        public Dictionary<int, T> values = new Dictionary<int, T>();
 
         private int GenerateId()
         {
