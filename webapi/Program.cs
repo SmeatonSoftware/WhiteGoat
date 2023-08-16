@@ -1,5 +1,6 @@
 using webapi.Data;
 using webapi.Data.Classes;
+using webapi.Services;
 
 namespace webapi
 {
@@ -30,7 +31,7 @@ namespace webapi
 
             // Configure the HTTP request pipeline.
 
-            app.UseAuthorization();
+            app.Use(async (context, next) => await Authorization.CheckAuth(context,next));
 
             app.UseCors("_myAllowSpecificOrigins");
 

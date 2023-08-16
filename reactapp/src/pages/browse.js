@@ -2,10 +2,24 @@ import {Component} from "react";
 import CenteredDiv from "../components/centeredDiv";
 import BrowseItem from "../components/browseItem";
 import GoatBar from "../components/goatBar";
+import APIRequest from "../shared/request";
 
 export default class Browse extends Component {
     constructor(props) {
         super(props);
+    }
+
+    async searchGames(){
+        var req = new APIRequest("games/search", "", "GET");
+        await req.executeWithCallback(
+            (d) => {
+            },
+            (d) => {
+            }, false);
+    }
+
+    componentDidMount() {
+        this.searchGames();
     }
 
     render() {

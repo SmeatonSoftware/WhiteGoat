@@ -1,5 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using webapi.Services;
+using static webapi.Services.Authorization;
 
 namespace webapi.Data.Classes
 {
@@ -12,6 +13,8 @@ namespace webapi.Data.Classes
         [JsonIgnore]
         public string PwordSalt { get; set; }
 
+        public AuthLevel authLevel { get; set; }
+
         public User() { }
 
         public User(string email, string password)
@@ -19,6 +22,7 @@ namespace webapi.Data.Classes
             Email = email;
             PwordSalt = Salt.GenerateSalt();
             HashedPassword = Hashing.Hash(password + PwordSalt);
+            authLevel = AuthLevel.User;
         }
     }
 }
