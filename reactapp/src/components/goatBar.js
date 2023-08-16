@@ -26,12 +26,16 @@ export default class GoatBar extends Component {
             }, true, headers);
     }
 
+    async logout(){
+
+    }
+
     render() {
         return (<div>
                 <h1 className="card-header">{this.props.title}
                     <div style={{position: "absolute", right: "1vw", top: "1vh"}}>
                         <button hidden={this.state.showLogin} type="button" className="btn btn-outline-warning btn-sm"
-                                onClick={() => this.props.pageChange(3)}>Logout
+                                onClick={() => this.logout()}>Logout
                         </button>
                         <button hidden={!this.state.showLogin} type="button" className="btn btn-outline-success btn-sm"
                                 onClick={() => this.props.pageChange(3)}>Login
