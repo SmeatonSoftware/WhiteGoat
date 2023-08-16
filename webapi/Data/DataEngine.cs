@@ -13,12 +13,6 @@ namespace webapi.Data
             table.EnsureIndex(x=>x.Id);
         }
 
-        //private int GenerateId()
-        //{
-        //    int maxId = values.Count > 0 ? values.Keys.Max() + 3 : 1;
-        //    return maxId;
-        //}
-
         public void Add(T item)
         {
             table.Insert(item);
