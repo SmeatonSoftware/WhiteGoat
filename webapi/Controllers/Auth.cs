@@ -11,10 +11,12 @@ namespace webapi.Controllers
     public class Auth : ControllerBase
     {
         private DataEngine<User> userData;
+        private DataEngine<Session> sessionData;
 
-        public Auth(DataEngine<User> _userData)
+        public Auth(DataEngine<User> _userData, DataEngine<Session> _sessionData)
         {
             userData = _userData;
+            sessionData = _sessionData;
         }
 
         private static bool IsStrongPassword(string pword)
@@ -35,8 +37,6 @@ namespace webapi.Controllers
 
             userData.Add(u, true);
 
-
-
             return Ok(new { message = "Account Created" });
         }
 
@@ -47,6 +47,27 @@ namespace webapi.Controllers
             {
                 if (Hashing.Match(password+u.PwordSalt,u.HashedPassword))
                 {
+                    var sessionKey = Salt.GenerateSalt(64);
+
+                    if (sessionData.TryFind(x => x.UserId == u.Id.Value, out var existingSession))
+                    {
+                        existingSession.SetKey(sessionKey);
+                        sessionData.Update(existingSession);
+                    }
+                    else
+                    {
+                        var s = new Session(u.Id.Value, sessionKey);
+                        sessionData.Add(s, true);
+                    }
+
+                    Response.Cookies.Append("uid", u.Id.Value.ToString());
+                    Response.Cookies.Append("key", sessionKey);
+
+                    if (Request.Headers.Origin[0].Contains("localhost"))
+                    {
+                        return Ok(new { uid = u.Id.Value, key = sessionKey });
+                    }
+
                     return Ok(new { message = "Login Completed" });
                 }
             }

@@ -1,4 +1,5 @@
-﻿using webapi.Services;
+﻿using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using webapi.Services;
 
 namespace webapi.Data.Classes
 {
@@ -12,6 +13,11 @@ namespace webapi.Data.Classes
         public Session(int userId, string key)
         {
             UserId = userId;
+            SetKey(key);
+        }
+
+        public void SetKey(string key)
+        {
             HashedKey = Hashing.Hash(key);
         }
     }
