@@ -4,7 +4,7 @@ import APIRequest from "../shared/request";
 export default class GoatBar extends Component {
     constructor(props) {
         super(props);
-        this.state = {showLogin: false, userData: {}}
+        this.state = {showLogin: true, userData: {}}
     }
 
     componentDidMount() {
@@ -23,11 +23,24 @@ export default class GoatBar extends Component {
                 that.setState({showLogin: false, userData: d});
             },
             (d) => {
+                that.setState({showLogin: true, userData: d});
             }, true, headers);
     }
 
     async logout(){
+        var that = this;
 
+        var headers =  document.location.href.includes("localhost") ?
+            {"sid": localStorage.getItem("sid"), "key": localStorage.getItem("key")} : {};
+
+        var req = new APIRequest("auth/logout", "", "GET");
+        await req.executeWithCallback(
+            (d) => {
+                that.setState({showLogin: true, userData: d});
+            },
+            (d) => {
+                that.setState({showLogin: true, userData: d});
+            }, false, headers);
     }
 
     render() {

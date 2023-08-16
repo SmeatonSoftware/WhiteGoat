@@ -37,6 +37,11 @@
                 throw new ArgumentException("Data Engine Does Not Contain Key");
         }
 
+        public bool Remove(int id)
+        {
+            return values.Remove(id);
+        }
+
         public bool Get(int id, out T value)
         {
             return values.TryGetValue(id, out value);
