@@ -8,7 +8,13 @@ export default class GoatBar extends Component {
     }
 
     componentDidMount() {
-        this.checkAuth();
+        var logged = localStorage.getItem("loggedIn");
+        if (logged != null){
+            this.setState({showLogin: logged != "true"});
+        }
+        else {
+            this.checkAuth();
+        }
     }
 
     async checkAuth(){
@@ -20,9 +26,12 @@ export default class GoatBar extends Component {
         var req = new APIRequest("auth/check", "", "GET");
         await req.executeWithCallback(
             (d) => {
+                localStorage.setItem("loggedIn", true);
+                localStorage.setItem("user", JSON.stringify(d));
                 that.setState({showLogin: false, userData: d});
             },
             (d) => {
+                localStorage.setItem("loggedIn", false);
                 that.setState({showLogin: true, userData: d});
             }, true, headers);
     }
@@ -36,11 +45,13 @@ export default class GoatBar extends Component {
         var req = new APIRequest("auth/logout", "", "GET");
         await req.executeWithCallback(
             (d) => {
-                that.setState({showLogin: true, userData: d});
             },
             (d) => {
-                that.setState({showLogin: true, userData: d});
             }, false, headers);
+
+        localStorage.removeItem("user");
+        localStorage.removeItem("loggedIn");
+        that.setState({showLogin: true});
     }
 
     render() {

@@ -14,6 +14,8 @@ export default class Login extends Component {
         if (this.state.email.length == 0 || this.state.password.length == 0)
             return;
 
+        localStorage.removeItem("loggedIn");
+
         var req = new APIRequest("auth/login?email=" + this.state.email + "&password=" + this.state.password
             , "", "POST");
         await req.executeWithCallback(
