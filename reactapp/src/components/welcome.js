@@ -11,7 +11,7 @@ export default class Welcome extends Component {
     render() {
         return <CenteredDiv height={70} sizerHeight={"vh"} width={50} sizerWidth={"vw"}>
             <div className="card border-primary mb-3" style={{maxWidth: "50rem"}}>
-                <GoatBar title={"White Goat Games"} pageChange={this.props.pageChange}/>
+                <GoatBar title={"White Goat Games"} page={0} pageChange={this.props.pageChange}/>
                 <div className="card-body">
                     <img src={logo} className="App-logo" alt="logo"/>
                     <hr/>

@@ -22,13 +22,14 @@ export default class APIRequest {
 
     async executeWithCallback(successCallback = (data) => {
     }, errorCallback = (data) => {
-    }, json = true) {
+    }, json = true, headers= {}) {
         let optn = {
             method: this.method,
             body: this.body.length > 0 ? JSON.stringify(this.body) : null,
             headers: this.body.length > 0 ? {
+                ...headers,
                 "Content-Type": "application/json"
-            } : {}
+            } : {...headers}
         }
 
         fetch(baseUrl + this.path, optn).then(

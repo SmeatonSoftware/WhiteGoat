@@ -24,6 +24,39 @@ namespace webapi.Controllers
             return pword.Length>5;
         }
 
+        [HttpGet("check")]
+        public async Task<IActionResult> Check()
+        {
+            int sid;
+            string key;
+            if (Request.Headers.Origin[0].Contains("localhost"))
+            {
+                if (!Request.Headers.TryGetValue("sid", out var _sid) || !Request.Headers.TryGetValue("key", out var _key))
+                    return Problem("Missing Auth Headers", statusCode: 401);
+
+                sid = int.Parse(_sid[0]);
+                key = _key[0];
+            }
+            else
+            {
+                if (!Request.Cookies.TryGetValue("sid", out var _sid) || !Request.Cookies.TryGetValue("key", out var _key))
+                    return Problem("Missing Auth Headers", statusCode: 401);
+
+                sid = int.Parse(_sid);
+                key = _key;
+            }
+
+            if (!sessionData.Get(sid, out var s))
+                return Problem("Invalid Session Id", statusCode: 401);
+
+            if (!Hashing.Match(key, s.HashedKey))
+                return Problem("Invalid Session Key", statusCode: 401);
+
+            userData.Get(s.UserId, out var u);
+
+            return Ok(u);
+        }
+
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromQuery] string email, [FromQuery] string password)
         {

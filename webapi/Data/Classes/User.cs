@@ -1,11 +1,15 @@
-﻿using webapi.Services;
+﻿using System.Text.Json.Serialization;
+using webapi.Services;
 
 namespace webapi.Data.Classes
 {
+
     public class User : DataClass
     {
         public string Email { get; set; }
+        [JsonIgnore]
         public string HashedPassword { get; set; }
+        [JsonIgnore]
         public string PwordSalt { get; set; }
 
         public User() { }

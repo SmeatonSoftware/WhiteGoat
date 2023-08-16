@@ -37,6 +37,11 @@
                 throw new ArgumentException("Data Engine Does Not Contain Key");
         }
 
+        public bool Get(int id, out T value)
+        {
+            return values.TryGetValue(id, out value);
+        }
+
         public bool TryFind(Func<T, bool> filter, out T value)
         {
             foreach (var item in values)
