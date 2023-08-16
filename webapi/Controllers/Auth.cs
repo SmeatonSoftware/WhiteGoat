@@ -49,23 +49,25 @@ namespace webapi.Controllers
                 {
                     var sessionKey = Salt.GenerateSalt(64);
 
-                    if (sessionData.TryFind(x => x.UserId == u.Id.Value, out var existingSession))
+                    Session s;
+
+                    if (sessionData.TryFind(x => x.UserId == u.Id.Value, out s))
                     {
-                        existingSession.SetKey(sessionKey);
-                        sessionData.Update(existingSession);
+                        s.SetKey(sessionKey);
+                        sessionData.Update(s);
                     }
                     else
                     {
-                        var s = new Session(u.Id.Value, sessionKey);
+                        s = new Session(u.Id.Value, sessionKey);
                         sessionData.Add(s, true);
                     }
 
-                    Response.Cookies.Append("uid", u.Id.Value.ToString());
+                    Response.Cookies.Append("sid", s.Id.Value.ToString());
                     Response.Cookies.Append("key", sessionKey);
 
                     if (Request.Headers.Origin[0].Contains("localhost"))
                     {
-                        return Ok(new { uid = u.Id.Value, key = sessionKey });
+                        return Ok(new { sid = s.Id.Value, key = sessionKey });
                     }
 
                     return Ok(new { message = "Login Completed" });

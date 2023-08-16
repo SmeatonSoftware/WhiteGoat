@@ -18,6 +18,10 @@ export default class Login extends Component {
             , "", "POST");
         await req.executeWithCallback(
             (d) => {
+                if (document.location.href.includes("localhost")){
+                    localStorage.setItem("sid", d["sid"]);
+                    localStorage.setItem("key", d["key"]);
+                }
                 this.props.pageChange(0);
             },
             (d) => {

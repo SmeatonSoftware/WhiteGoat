@@ -6,8 +6,8 @@
 
         private int GenerateId()
         {
-            int maxId = values.Count > 0 ? values.Keys.Max() : 1;
-            return maxId + 3;
+            int maxId = values.Count > 0 ? values.Keys.Max() + 3 : 1;
+            return maxId;
         }
 
         public void Add(T item, bool generateID = false)
