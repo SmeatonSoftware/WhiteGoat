@@ -52,7 +52,7 @@ namespace webapi.Controllers
             if (!Hashing.Match(key, s.HashedKey))
                 return Problem("Invalid Session Key", statusCode: 401);
 
-            sessionData.Remove(s.Id.Value);
+            sessionData.Remove(s.Id);
 
             return Ok();
         }
@@ -101,7 +101,7 @@ namespace webapi.Controllers
 
             var u = new User(email, password);
 
-            userData.Add(u, true);
+            userData.Add(u);
 
             return Ok(new { message = "Account Created" });
         }
@@ -117,23 +117,23 @@ namespace webapi.Controllers
 
                     Session s;
 
-                    if (sessionData.TryFind(x => x.UserId == u.Id.Value, out s))
+                    if (sessionData.TryFind(x => x.UserId == u.Id, out s))
                     {
                         s.SetKey(sessionKey);
                         sessionData.Update(s);
                     }
                     else
                     {
-                        s = new Session(u.Id.Value, sessionKey);
-                        sessionData.Add(s, true);
+                        s = new Session(u.Id, sessionKey);
+                        sessionData.Add(s);
                     }
 
-                    Response.Cookies.Append("sid", s.Id.Value.ToString());
+                    Response.Cookies.Append("sid", s.Id.ToString());
                     Response.Cookies.Append("key", sessionKey);
 
                     if (Request.Headers.Origin[0].Contains("localhost"))
                     {
-                        return Ok(new { sid = s.Id.Value, key = sessionKey });
+                        return Ok(new { sid = s.Id, key = sessionKey });
                     }
 
                     return Ok(new { message = "Login Completed" });

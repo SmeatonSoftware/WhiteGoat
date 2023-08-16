@@ -1,3 +1,4 @@
 ﻿webapi/.vs
 webapi/obj
 webapi/bin
+*.db
