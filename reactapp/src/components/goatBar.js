@@ -32,20 +32,18 @@ export default class GoatBar extends Component {
 
     render() {
         return (<div>
-                <h1 className="card-header">{this.props.title}
-                    <div style={{position: "absolute", right: "1vw", top: "1vh"}}>
-                        <button hidden={this.state.showLogin} type="button" className="btn btn-outline-warning btn-sm"
-                                onClick={() => this.logout()}>Logout
-                        </button>
-                        <button hidden={!this.state.showLogin} type="button" className="btn btn-outline-success btn-sm"
-                                onClick={() => this.props.pageChange(3)}>Login
-                        </button>
-                        <button hidden={this.props.page == 0} type="button" className="btn btn-outline-info btn-sm" style={{marginLeft: "1vw"}}
-                                onClick={() => this.props.pageChange(0)}>Back
-                        </button>
-                    </div>
-                </h1>
-
+                <h1 className="card-header">{this.props.title}</h1>
+                <div style={{float:"right", margin: "1rem"}}>
+                    <button hidden={this.state.showLogin} type="button" className="btn btn-outline-warning btn-sm"
+                            onClick={() => this.logout()}>Logout
+                    </button>
+                    <button hidden={!this.state.showLogin} type="button" className="btn btn-outline-success btn-sm"
+                            onClick={() => this.props.pageChange(3)}>Login
+                    </button>
+                    <button hidden={this.props.page == 0} type="button" className="btn btn-outline-info btn-sm" style={{marginLeft: "1vw"}}
+                            onClick={() => this.props.pageChange(0)}>Back
+                    </button>
+                </div>
             </div>
 
         );
