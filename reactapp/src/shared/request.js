@@ -23,13 +23,18 @@ export default class APIRequest {
     async executeWithCallback(successCallback = (data) => {
     }, errorCallback = (data) => {
     }, json = true, headers= {}) {
+        let head = this.body.length > 0 ? {
+            ...headers,
+            "Content-Type": "application/json"
+        } : {...headers};
+
+        head =  document.location.href.includes("localhost") ?
+            {...head, "sid": localStorage.getItem("sid"), "key": localStorage.getItem("key")} : {...head};
+
         let optn = {
             method: this.method,
             body: this.body.length > 0 ? JSON.stringify(this.body) : null,
-            headers: this.body.length > 0 ? {
-                ...headers,
-                "Content-Type": "application/json"
-            } : {...headers}
+            headers: head
         }
 
         fetch(baseUrl + this.path, optn).then(

@@ -20,9 +20,6 @@ export default class GoatBar extends Component {
     async checkAuth(){
         var that = this;
 
-        var headers =  document.location.href.includes("localhost") ?
-            {"sid": localStorage.getItem("sid"), "key": localStorage.getItem("key")} : {};
-
         var req = new APIRequest("auth/check", "", "GET");
         await req.executeWithCallback(
             (d) => {
@@ -33,21 +30,18 @@ export default class GoatBar extends Component {
             (d) => {
                 localStorage.setItem("loggedIn", false);
                 that.setState({showLogin: true, userData: d});
-            }, true, headers);
+            });
     }
 
     async logout(){
         var that = this;
-
-        var headers =  document.location.href.includes("localhost") ?
-            {"sid": localStorage.getItem("sid"), "key": localStorage.getItem("key")} : {};
 
         var req = new APIRequest("auth/logout", "", "GET");
         await req.executeWithCallback(
             (d) => {
             },
             (d) => {
-            }, false, headers);
+            }, false);
 
         localStorage.removeItem("user");
         localStorage.removeItem("loggedIn");
