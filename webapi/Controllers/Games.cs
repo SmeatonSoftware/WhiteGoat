@@ -9,8 +9,6 @@ namespace webapi.Controllers
     [ApiController]
     public class Games : ControllerBase
     {
-
-        [RequireAuthAttr(AuthLevel.User)]
         [HttpGet("search")]
         public async Task<IActionResult> Search()
         {

@@ -3,8 +3,9 @@ import CenteredDiv from "../components/centeredDiv";
 import BrowseItem from "../components/browseItem";
 import GoatBar from "../components/goatBar";
 import APIRequest from "../shared/request";
+import BetterComponent from "../shared/betterComponent";
 
-export default class Browse extends Component {
+export default class Browse extends BetterComponent {
     constructor(props) {
         super(props);
     }
@@ -18,7 +19,7 @@ export default class Browse extends Component {
             }, false);
     }
 
-    componentDidMount() {
+    componentSecondMount() {
         this.searchGames();
     }
 

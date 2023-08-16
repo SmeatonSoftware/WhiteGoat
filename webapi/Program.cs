@@ -29,8 +29,6 @@ namespace webapi
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
-
             app.Use(async (context, next) => await Authorization.CheckAuth(context,next));
 
             app.UseCors("_myAllowSpecificOrigins");

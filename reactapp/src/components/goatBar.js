@@ -1,13 +1,14 @@
 import {Component} from "react";
 import APIRequest from "../shared/request";
+import BetterComponent from "../shared/betterComponent";
 
-export default class GoatBar extends Component {
+export default class GoatBar extends BetterComponent {
     constructor(props) {
         super(props);
-        this.state = {showLogin: true, userData: {}}
+        this.state = {showLogin: true, userData: {}};
     }
 
-    componentDidMount() {
+    componentSecondMount() {
         var logged = localStorage.getItem("loggedIn");
         if (logged != null){
             this.setState({showLogin: logged != "true"});
