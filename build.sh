@@ -4,7 +4,6 @@ echo "Building API..."
 
 cd webapi
 
-dotnet restore
 dotnet build -c Release -o ./app/api
 
 cd ..
