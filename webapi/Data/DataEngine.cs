@@ -5,7 +5,6 @@ namespace webapi.Data
 {
     public class DataEngine<T> where T : DataClass
     {
-        public Dictionary<int, T> values = new Dictionary<int, T>();
         ILiteCollection<T> table;
 
         public DataEngine(ILiteCollection<T> _table) { 

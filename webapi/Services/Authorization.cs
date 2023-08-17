@@ -69,6 +69,7 @@ namespace webapi.Services
 
                     if (userLevel >= reqAuthAttr.AuthLevel)
                     {
+                        context.Items.Add("user", u);
                         await next.Invoke(context);
                     }
                     else
