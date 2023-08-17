@@ -9,10 +9,13 @@ export default class App extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {page: 0, data: {}};
+        var _page = localStorage.getItem("page");
+
+        this.state = {page: _page == null ? 0 : parseInt(_page), data: {}};
     }
 
     changePage(_page = 0, _data = {}) {
+        localStorage.setItem("page", _page);
         this.setState({page: _page, data: _data});
     }
 
