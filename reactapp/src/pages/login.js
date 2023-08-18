@@ -24,6 +24,7 @@ export default class Login extends Component {
                     localStorage.setItem("sid", d["sid"]);
                     localStorage.setItem("key", d["key"]);
                 }
+                localStorage.setItem("loggedIn", true);
                 this.props.pageChange(0);
             },
             (d) => {

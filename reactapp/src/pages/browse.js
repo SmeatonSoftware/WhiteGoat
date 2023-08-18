@@ -28,7 +28,7 @@ export default class Browse extends BetterComponent {
         }
     }
 
-    componentSecondMount() {
+    componentFirstMount() {
         this.searchGames();
     }
 

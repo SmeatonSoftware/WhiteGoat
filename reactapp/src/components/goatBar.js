@@ -8,7 +8,7 @@ export default class GoatBar extends BetterComponent {
         this.state = {showLogin: true, userData: {}};
     }
 
-    componentSecondMount() {
+    componentFirstMount() {
         var logged = localStorage.getItem("loggedIn");
         if (logged != null){
             this.setState({showLogin: logged != "true"});

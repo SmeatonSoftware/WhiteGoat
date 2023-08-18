@@ -1,5 +1,6 @@
 //http://192.168.1.91:5000/
-export const baseUrl = document.location.href.includes(":") ? "http://192.168.1.91:5000/api/" : "/api/";
+const localUrl = "http://192.168.1.91"
+export const baseUrl = document.location.href.includes(localUrl) ? localUrl+":5000/api/" : "/api/";
 
 export default class APIRequest {
     constructor(path, body, method) {
