@@ -1,5 +1,5 @@
 //http://192.168.1.91:5000/
-const localUrl = "http://192.168.1.91"
+const localUrl = "http://localhost"
 export const baseUrl = document.location.href.includes(localUrl) ? localUrl+":5000/api/" : "/api/";
 
 export default class APIRequest {

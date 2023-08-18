@@ -62,22 +62,18 @@ namespace webapi.Controllers
         {
             int sid;
             string key;
-            if ((Request.Headers.TryGetValue("Host", out var _host) && _host[0].Contains("localhost"))
-                || (Request.Headers.TryGetValue("Origin", out var _origin) && _origin[0].Contains("localhost"))) 
-            { 
-                if (!Request.Headers.TryGetValue("sid", out var _sid) || !Request.Headers.TryGetValue("key", out var _key))
-                    return Problem("Missing Auth Headers", statusCode: 401);
-
+            if (Request.Headers.TryGetValue("sid", out var _sid) && Request.Headers.TryGetValue("key", out var _key))
+            {
                 sid = int.Parse(_sid[0]);
                 key = _key[0];
             }
             else
             {
-                if (!Request.Cookies.TryGetValue("sid", out var _sid) || !Request.Cookies.TryGetValue("key", out var _key))
-                    return Problem("Missing Auth Headers", statusCode: 401);
+                if (!Request.Cookies.TryGetValue("sid", out var __sid) || !Request.Cookies.TryGetValue("key", out var __key))
+                    return Problem("Missing Auth Cookies", statusCode: 401);
 
-                sid = int.Parse(_sid);
-                key = _key;
+                sid = int.Parse(__sid);
+                key = __key;
             }
 
             if (!sessionData.Get(sid, out var s))
