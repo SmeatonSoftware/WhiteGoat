@@ -22,4 +22,14 @@ export default class BetterComponent extends Component{
     componentSecondMount(){
 
     }
+
+    isAdmin(){
+        var u = localStorage.getItem("user");
+
+        if (u==null) return false;
+
+        u = JSON.parse(u);
+
+        return u["authLevel"]==2;
+    }
 }

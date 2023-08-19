@@ -4,6 +4,7 @@ import {Component} from "react";
 import Browse from "./pages/browse";
 import About from "./pages/about";
 import Login from "./pages/login";
+import BrowseItemManage from "./pages/browseItemManage";
 
 export default class App extends Component {
     constructor(props) {
@@ -28,16 +29,19 @@ export default class App extends Component {
 
         switch (this.state.page) {
             case 0:
-                _selectedPage = <Welcome pageChange={cPage}/>;
+                _selectedPage = <Welcome pageChange={cPage} data={this.state.data}/>;
                 break;
             case 1:
-                _selectedPage = <Browse pageChange={cPage}/>;
+                _selectedPage = <Browse pageChange={cPage} data={this.state.data}/>;
                 break;
+            case 11:
+                _selectedPage = <BrowseItemManage pageChange={cPage} data={this.state.data}/>
+                break
             case 2:
-                _selectedPage = <About pageChange={cPage}/>;
+                _selectedPage = <About pageChange={cPage} data={this.state.data}/>;
                 break;
             case 3:
-                _selectedPage = <Login pageChange={cPage}/>;
+                _selectedPage = <Login pageChange={cPage} data={this.state.data}/>;
                 break;
         }
 

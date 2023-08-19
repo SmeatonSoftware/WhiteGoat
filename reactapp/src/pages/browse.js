@@ -44,6 +44,27 @@ export default class Browse extends BetterComponent {
                         />
                         <small id="emailHelp" className="form-text text-muted">If You Know The Game You Are Looking For
                             Or Some Key Words</small>
+
+                    </div>
+                    <div className="form-group">
+                        <table style={{width:"100%"}}>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label htmlFor="gameType" className="form-label mt-4">Game Type</label>
+                                        <select className="form-select" id="gameType" onChange={(e)=>this.setState({gameType: e.target.value})}>
+                                            <option value={0}>Board Game</option>
+                                            <option value={1}>Video Game</option>
+                                        </select>
+                                    </td>
+                                    <td style={{verticalAlign:"bottom"}}>
+                                        <button hidden={!this.isAdmin()} type="button" className="btn btn-outline-warning" style={{marginRight: "1vw", width: "40%"}}
+                                                onClick={()=>this.props.pageChange(11)}>New</button>
+                                        <button type="button" className="btn btn-outline-success" style={{width: "40%"}}>Search</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
