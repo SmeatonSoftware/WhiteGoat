@@ -1,4 +1,4 @@
-import './App.css';
+import './styling/App.css';
 import Welcome from "./pages/welcome";
 import {Component} from "react";
 import Browse from "./pages/browse";
