@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using webapi.Data.Classes;
 using webapi.Data;
 using static webapi.Services.Authorization;
+using System.Text.Json;
 
 namespace webapi.Controllers
 {
@@ -32,13 +33,24 @@ namespace webapi.Controllers
 
         [RequireAuthAttr(AuthLevel.Admin)]
         [HttpPost("create")]
-        public async Task<IActionResult> Create([FromBody] GameListing game)
+        public async Task<IActionResult> Create([FromBody]GameListing game)
         {
             User u = (User)Request.HttpContext.Items["user"];
 
             game.SetDefaults(u);
 
             gameListingEngine.Add(game);
+
+            return Ok(game);
+        }
+
+        [RequireAuthAttr(AuthLevel.Admin)]
+        [HttpPost("update")]
+        public async Task<IActionResult> Update([FromBody] GameListing game)
+        {
+            User u = (User)Request.HttpContext.Items["user"];
+
+            gameListingEngine.Update(game);
 
             return Ok(game);
         }

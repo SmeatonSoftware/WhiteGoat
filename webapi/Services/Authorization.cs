@@ -71,11 +71,13 @@ namespace webapi.Services
                     {
                         context.Items.Add("user", u);
                         await next.Invoke(context);
+                        return;
                     }
                     else
                     {
                         context.Response.StatusCode = 401;
                         await context.Response.WriteAsJsonAsync(new { message = "No Permission" });
+                        return;
                     }
                 }
             }

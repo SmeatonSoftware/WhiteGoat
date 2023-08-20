@@ -25,7 +25,7 @@ export default class APIRequest {
     async executeWithCallback(successCallback = (data) => {
     }, errorCallback = (data) => {
     }, json = true, headers= {}) {
-        let head = this.body.length > 0 ? {
+        let head = this.body != "" ? {
             ...headers,
             "Content-Type": "application/json"
         } : {...headers};
@@ -35,7 +35,7 @@ export default class APIRequest {
 
         let optn = {
             method: this.method,
-            body: this.body.length > 0 ? JSON.stringify(this.body) : null,
+            body: this.body != "" ? JSON.stringify(this.body) : null,
             headers: head
         }
 

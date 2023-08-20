@@ -23,13 +23,19 @@ export default class BetterComponent extends Component{
 
     }
 
-    isAdmin(){
+    getUser(){
         var u = localStorage.getItem("user");
 
-        if (u==null) return false;
+        if (u==null) return null;
 
         u = JSON.parse(u);
 
-        return u["authLevel"]==2;
+        return u;
+    }
+
+    isAdmin(){
+        var u = this.getUser();
+
+        return u!= null && u["authLevel"]==2;
     }
 }

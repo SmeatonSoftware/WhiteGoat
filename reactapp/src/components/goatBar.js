@@ -40,6 +40,7 @@ export default class GoatBar extends BetterComponent {
         var req = new APIRequest("auth/logout", "", "GET");
         await req.executeWithCallback(
             (d) => {
+                that.props.pageChange(0);
             },
             (d) => {
             }, false);

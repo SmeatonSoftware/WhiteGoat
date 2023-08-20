@@ -34,7 +34,7 @@
         public string Title { get; set; }
         public string Summary { get; set; }
         public string Description { get; set; }
-        public string PrimaryImageURL { get; set; }
+        public string ImageURLs { get; set; }
         public string Developers { get; set; }
         public string Tags { get; set; }
         public ListingState State { get; set; }
@@ -45,8 +45,6 @@
         public void SetDefaults(User u)
         {
             Id = 0;
-            State = ListingState.Idea;
-            Visible = false;
             CreatorUserId = u.Id;
         }
     }
