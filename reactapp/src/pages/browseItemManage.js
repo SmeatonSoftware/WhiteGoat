@@ -25,8 +25,6 @@ export default class BrowseItemManage extends BetterComponent{
         var d = this.state.data;
         d[field] = value;
 
-        console.log(d);
-
         this.setState({data: d});
     }
 
@@ -169,8 +167,6 @@ export default class BrowseItemManage extends BetterComponent{
         var that = this;
 
         var keys = Object.keys(this.state.data).length;
-
-        console.log(keys)
 
         if (keys < 10){
             that.setState({error: "Please Fill In All Fields Before Saving"});

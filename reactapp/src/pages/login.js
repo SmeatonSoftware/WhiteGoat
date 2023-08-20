@@ -23,6 +23,10 @@ export default class Login extends Component {
                 if (document.location.href.includes("localhost")){
                     localStorage.setItem("sid", d["sid"]);
                     localStorage.setItem("key", d["key"]);
+                    localStorage.setItem("user", JSON.stringify(d["user"]));
+                }
+                else{
+                    localStorage.setItem("user", JSON.stringify(d));
                 }
                 localStorage.setItem("loggedIn", true);
                 this.props.pageChange(0);

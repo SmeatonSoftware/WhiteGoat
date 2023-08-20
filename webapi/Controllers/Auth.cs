@@ -130,10 +130,10 @@ namespace webapi.Controllers
 
                     if (Request.Headers.Origin[0].Contains("localhost"))
                     {
-                        return Ok(new { sid = s.Id, key = sessionKey });
+                        return Ok(new { user = u, sid = s.Id, key = sessionKey });
                     }
 
-                    return Ok(new { message = "Login Completed" });
+                    return Ok(u);
                 }
             }
 

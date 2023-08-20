@@ -8,7 +8,7 @@ import BetterComponent from "../shared/betterComponent";
 export default class Browse extends BetterComponent {
     constructor(props) {
         super(props);
-        this.state = {gameType: 0, query: "", lisitingData: []}
+        this.state = {gameType: 0, query: "", listingData: []}
     }
 
     async searchGames(){
@@ -16,10 +16,10 @@ export default class Browse extends BetterComponent {
         var req = new APIRequest("games/search?gameType="+this.state.gameType+"&query="+this.state.query, "", "GET");
         await req.executeWithCallback(
             (d) => {
-                that.setState({lisitingData: d});
+                that.setState({listingData: d});
             },
             (d) => {
-            }, false);
+            }, true);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -34,7 +34,7 @@ export default class Browse extends BetterComponent {
 
     render() {
         return <CenteredDiv height={98} sizerHeight={"vh"} width={98} sizerWidth={"vw"}>
-            <div className="card border-primary mb-3" style={{width:"100%", minHeight: "20%"}}>
+            <div className="card border-primary mb-3" style={{width:"100%", maxHeight: "40%"}}>
                 <GoatBar title={"Browse White Goat Games"} pageChange={this.props.pageChange}/>
                 <div className="card-body">
                     <div className="form-group">
@@ -69,10 +69,14 @@ export default class Browse extends BetterComponent {
                 </div>
             </div>
 
-            <div style={{overflow: "scroll", maxHeight: "78%"}}>
-                <BrowseItem/>
-                <BrowseItem/>
-                <BrowseItem/>
+            <div style={{overflow: "scroll", height: "60%"}}>
+                <div style={{height: "140%"}}>
+                {
+                    this.state.listingData.map(
+                        x=> <BrowseItem data={x}/>
+                    )
+                }
+                </div>
             </div>
         </CenteredDiv>;
     }
