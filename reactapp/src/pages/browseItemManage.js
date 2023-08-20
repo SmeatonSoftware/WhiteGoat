@@ -21,18 +21,6 @@ export default class BrowseItemManage extends BetterComponent{
         this.state = {data: d, error: "", mode: hasPropData ? 1 : 0};
     }
 
-
-// public string Title { get; set; }
-// public string Summary { get; set; }
-// public string Description { get; set; }
-// public string ImageURLs { get; set; }
-// public string Developers { get; set; }
-// public string Tags { get; set; }
-// public ListingState State { get; set; }
-// public GameType GameType { get; set;}
-// public bool Visible { get; set; }
-// public int CreatorUserId { get; set; }
-
     updateDataField(field, value){
         var d = this.state.data;
         d[field] = value;
