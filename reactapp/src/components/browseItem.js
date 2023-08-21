@@ -52,7 +52,7 @@ export default class BrowseItem extends BetterComponent {
             case 3:
                 _buttons = <div>
                     <button type="button" className="btn btn-outline-info"
-                            style={{minWidth: "10vw", width:"40%"}}>Download
+                            style={{minWidth: "fit-content", width:"40%"}}>Download
                     </button>
                 </div>;
                 break;
@@ -60,10 +60,10 @@ export default class BrowseItem extends BetterComponent {
             case 4:
                 _buttons = <div>
                     <button type="button" className="btn btn-outline-success"
-                            style={{minWidth: "10vw", width:"40%", marginRight: "1vw"}}>Buy
+                            style={{minWidth: "fit-content", width:"40%", marginRight: "1vw"}}>Buy
                     </button>
                     <button type="button" className="btn btn-outline-info"
-                            style={{minWidth: "10vw", width:"40%"}}>Download
+                            style={{minWidth: "fit-content", width:"40%"}}>Download
                     </button>
                 </div>;
                 break;
@@ -92,15 +92,7 @@ export default class BrowseItem extends BetterComponent {
 
                     <div className={"row"}>
                         <div className={"col-sm"}>
-                            {
-                                this.isAdmin() ? <div>
-                                    <button type="button" className="btn btn-outline-warning"
-                                            style={{minWidth: "10vw", width:"50%"}}
-                                            onClick={()=>this.editItem(this.state.data.id)}
-                                    >Manage
-                                    </button>
-                                </div>:<div></div>
-                            }
+
                         </div>
                         <div className={"col-sm"}>
                             <div className="progress">
@@ -123,6 +115,15 @@ export default class BrowseItem extends BetterComponent {
 
                     <div className={"row"}>
                         <div className={"col-sm"}>
+                            {
+                                this.isAdmin() ? <div>
+                                    <button type="button" className="btn btn-outline-warning"
+                                            style={{minWidth: "10vw", width:"50%"}}
+                                            onClick={()=>this.editItem(this.state.data.id)}
+                                    >Manage
+                                    </button>
+                                </div>:<div></div>
+                            }
                         </div>
                         <div className={"col-sm"}>
                             { this.getButtons()}
