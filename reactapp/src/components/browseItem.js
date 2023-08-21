@@ -7,7 +7,7 @@ export default class BrowseItem extends BetterComponent {
     constructor(props) {
         super(props);
 
-        this.state = {data: this.props.data, voteRatio: 0}
+        this.state = {data: this.props.data, voteRatio: 0, pos: 0, neg: 0}
     }
 
     componentFirstMount() {
@@ -36,7 +36,7 @@ export default class BrowseItem extends BetterComponent {
             (d) => {
                 var pos = d["positive"];
                 var neg = d["negative"];
-                this.setState({voteRatio: pos / (pos+neg) * 100})
+                this.setState({voteRatio: pos / (pos+neg) * 100, pos: pos, neg: neg})
             },
             (d) => {
             }, true);
@@ -48,18 +48,6 @@ export default class BrowseItem extends BetterComponent {
         var state = this.state.data.state;
 
         switch (state){
-            default:
-                _buttons = <div>
-                    <button type="button" className="btn btn-outline-success"
-                            style={{minWidth: "10vw", width:"40%", marginRight:"5%"}}
-                            onClick={()=>this.vote(true)}>Thumb Up
-                    </button>
-                    <button type="button" className="btn btn-outline-danger"
-                            style={{minWidth: "10vw", width:"40%"}}
-                            onClick={()=>this.vote(false)}>Thumb Down
-                    </button>
-                </div>;
-                break;
 
             case 3:
                 _buttons = <div>
@@ -105,6 +93,27 @@ export default class BrowseItem extends BetterComponent {
                     <tr>
                         <td>
                             <hr/>
+                        </td>
+                        <td>
+                            <div className="progress">
+                                <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{width: this.state.voteRatio+"%"}}></div>
+                                <div className="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style={{width: 100-this.state.voteRatio+"%"}}></div>
+                            </div>
+                            <small id="emailHelp" className="form-text">{this.state.pos} : {this.state.neg}</small>
+                            <div>
+                            <button type="button" className="btn btn-outline-success"
+                                    style={{minWidth: "10vw", width:"40%", marginRight:"5%"}}
+                                    onClick={()=>this.vote(true)}>Thumb Up
+                            </button>
+                            <button type="button" className="btn btn-outline-danger"
+                                    style={{minWidth: "10vw", width:"40%"}}
+                                    onClick={()=>this.vote(false)}>Thumb Down
+                            </button>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             {
                                 this.isAdmin() ? <div>
                                     <button type="button" className="btn btn-outline-warning"
@@ -116,10 +125,6 @@ export default class BrowseItem extends BetterComponent {
                             }
                         </td>
                         <td>
-                            <div className="progress">
-                                <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style={{width: this.state.voteRatio+"%"}}></div>
-                            </div>
-                            <hr/>
                             { this.getButtons()}
                         </td>
                     </tr>
