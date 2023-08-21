@@ -16,6 +16,7 @@ export default class Browse extends BetterComponent {
         var req = new APIRequest("games/search?gameType="+this.state.gameType+"&query="+this.state.query, "", "GET");
         await req.executeWithCallback(
             (d) => {
+                console.log(d);
                 that.setState({listingData: d});
             },
             (d) => {

@@ -13,6 +13,43 @@ export default class BrowseItem extends BetterComponent {
         this.props.pageChange(11,this.state.data);
     }
 
+    getButtons(){
+        var _buttons = <div></div>
+
+        var state = this.state.data.state;
+
+        switch (state){
+            default:
+                _buttons = <div>
+                    <button type="button" className="btn btn-outline-success"
+                            style={{minWidth: "10vw", width:"40%"}}>Vote For
+                    </button>
+                </div>;
+                break;
+
+            case 3:
+                _buttons = <div>
+                    <button type="button" className="btn btn-outline-info"
+                            style={{minWidth: "10vw", width:"40%"}}>Download
+                    </button>
+                </div>;
+                break;
+
+            case 4:
+                _buttons = <div>
+                    <button type="button" className="btn btn-outline-success"
+                            style={{minWidth: "10vw", width:"40%", marginRight: "1vw"}}>Buy
+                    </button>
+                    <button type="button" className="btn btn-outline-info"
+                            style={{minWidth: "10vw", width:"40%"}}>Download
+                    </button>
+                </div>;
+                break;
+        }
+
+        return _buttons;
+    }
+
     render() {
         return <div className="card border-primary mb-3" style={{width: "100%"}} key={this.state.id}>
             <h3 className="card-header">{this.state.data.title}</h3>
@@ -33,9 +70,9 @@ export default class BrowseItem extends BetterComponent {
                     </tr>
                     <tr>
                         <td>
+                            <hr/>
                             {
                                 this.isAdmin() ? <div>
-                                    <hr/>
                                     <button type="button" className="btn btn-outline-warning"
                                             style={{minWidth: "10vw", width:"50%"}}
                                             onClick={()=>this.editItem(this.state.data.id)}
@@ -46,12 +83,7 @@ export default class BrowseItem extends BetterComponent {
                         </td>
                         <td>
                             <hr/>
-                            <button type="button" className="btn btn-outline-success"
-                                    style={{minWidth: "10vw", width:"40%", marginRight: "1vw"}}>Buy
-                            </button>
-                            <button type="button" className="btn btn-outline-info"
-                                    style={{minWidth: "10vw", width:"40%"}}>Download
-                            </button>
+                            { this.getButtons()}
                         </td>
                     </tr>
                     </tbody>
