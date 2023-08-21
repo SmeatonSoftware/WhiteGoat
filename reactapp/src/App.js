@@ -20,8 +20,6 @@ export default class App extends Component {
         pageStack = pageStack == null ? [0, null] : JSON.parse(pageStack);
         pageStack.push([_page,_data]);
 
-        console.log(pageStack);
-
         localStorage.setItem("pageStack", JSON.stringify(pageStack));
         this.setState({page: _page, data: _data});
     }
