@@ -76,22 +76,22 @@ export default class BrowseItem extends BetterComponent {
         return <div className="card border-primary mb-3" style={{width: "100%"}} key={this.state.id}>
             <h3 className="card-header">{this.state.data.title}</h3>
             <div className="card-body">
-                <table style={{width:"100%"}}>
-                    <tbody>
-                    <tr>
-                        <td style={{verticalAlign: "top", width: "30vw"}}>
+                <div className={"container"}>
+                    <div className={"row"}>
+                        <div className={"col-sm"}>
                             <ImagePanel images={this.state.data.imageURLs}/>
-                        </td>
-                        <td>
+                        </div>
+                        <div className={"col-sm"}>
                             <h5>{this.state.data.summary}</h5>
                             <hr/>
                             <p>
                                 {this.state.data.description}
                             </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style={{verticalAlign:"bottom"}}>
+                        </div>
+                    </div>
+
+                    <div className={"row"}>
+                        <div className={"col-sm"}>
                             {
                                 this.isAdmin() ? <div>
                                     <button type="button" className="btn btn-outline-warning"
@@ -101,34 +101,34 @@ export default class BrowseItem extends BetterComponent {
                                     </button>
                                 </div>:<div></div>
                             }
-                        </td>
-                        <td>
+                        </div>
+                        <div className={"col-sm"}>
                             <div className="progress">
                                 <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{width: this.state.voteRatio+"%"}}></div>
                                 <div className="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style={{width: 100-this.state.voteRatio+"%"}}></div>
                             </div>
                             <small id="emailHelp" className="form-text">{this.state.pos} : {this.state.neg}</small>
                             <div>
-                            <button type="button" className="btn btn-outline-success"
-                                    style={{minWidth: "10vw", width:"40%", marginRight:"5%"}}
-                                    onClick={()=>this.vote(true)}>Thumb Up
-                            </button>
-                            <button type="button" className="btn btn-outline-danger"
-                                    style={{minWidth: "10vw", width:"40%"}}
-                                    onClick={()=>this.vote(false)}>Thumb Down
-                            </button>
+                                <button type="button" className="btn btn-outline-success"
+                                        style={{minWidth: "10vw", width:"40%", marginRight:"5%"}}
+                                        onClick={()=>this.vote(true)}>Thumb Up
+                                </button>
+                                <button type="button" className="btn btn-outline-danger"
+                                        style={{minWidth: "10vw", width:"40%"}}
+                                        onClick={()=>this.vote(false)}>Thumb Down
+                                </button>
+                            </div>
                         </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        </td>
-                        <td>
+                    </div>
+
+                    <div className={"row"}>
+                        <div className={"col-sm"}>
+                        </div>
+                        <div className={"col-sm"}>
                             { this.getButtons()}
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>;
     }
