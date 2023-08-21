@@ -1,7 +1,6 @@
 import BetterComponent from "../shared/betterComponent";
 import CenteredDiv from "../components/centeredDiv";
 import GoatBar from "../components/goatBar";
-import "../styling/BrowseItemManage.scss";
 import APIRequest from "../shared/request";
 
 export default class BrowseItemManage extends BetterComponent{
