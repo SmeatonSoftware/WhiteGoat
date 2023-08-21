@@ -92,9 +92,6 @@ export default class BrowseItem extends BetterComponent {
 
                     <div className={"row"}>
                         <div className={"col-sm"}>
-
-                        </div>
-                        <div className={"col-sm"}>
                             <div className="progress">
                                 <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{width: this.state.voteRatio+"%"}}></div>
                                 <div className="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style={{width: 100-this.state.voteRatio+"%"}}></div>
