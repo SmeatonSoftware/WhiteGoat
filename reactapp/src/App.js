@@ -16,7 +16,13 @@ export default class App extends Component {
     }
 
     changePage(_page = 0, _data = {}) {
-        localStorage.setItem("page", _page);
+        var pageStack = localStorage.getItem("pageStack");
+        pageStack = pageStack == null ? [0] : JSON.parse(pageStack);
+        pageStack.push(_page);
+
+        console.log(pageStack);
+
+        localStorage.setItem("pageStack", JSON.stringify(pageStack));
         this.setState({page: _page, data: _data});
     }
 

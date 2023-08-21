@@ -7,7 +7,6 @@ export default class BrowseItem extends BetterComponent {
         super(props);
 
         this.state = {data: this.props.data}
-        console.log(this.state);
     }
 
     editItem(id){
