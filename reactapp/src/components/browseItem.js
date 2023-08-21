@@ -1,16 +1,39 @@
 import {Component} from "react";
 import ImagePanel from "./ImagePanel";
 import BetterComponent from "../shared/betterComponent";
+import APIRequest from "../shared/request";
 
 export default class BrowseItem extends BetterComponent {
     constructor(props) {
         super(props);
 
-        this.state = {data: this.props.data}
+        this.state = {data: this.props.data, votes: 0}
     }
 
-    editItem(id){
+    editItem(){
         this.props.pageChange(11,this.state.data);
+    }
+
+    async vote(positive){
+        var that = this;
+        var req = new APIRequest("votes/votefor?gameId="+this.state.data.id+"&positive="+positive, "", "GET");
+        await req.executeWithCallback(
+            (d) => {
+                console.log(d);
+            },
+            (d) => {
+            }, true);
+    }
+
+    async getVotes(){
+        var that = this;
+        var req = new APIRequest("votes/get?gameId="+this.state.data.id, "", "GET");
+        await req.executeWithCallback(
+            (d) => {
+                console.log(d);
+            },
+            (d) => {
+            }, true);
     }
 
     getButtons(){
@@ -22,7 +45,12 @@ export default class BrowseItem extends BetterComponent {
             default:
                 _buttons = <div>
                     <button type="button" className="btn btn-outline-success"
-                            style={{minWidth: "10vw", width:"40%"}}>Vote For
+                            style={{minWidth: "10vw", width:"40%", marginRight:"5%"}}
+                            onClick={()=>this.vote(true)}>Thumb Up
+                    </button>
+                    <button type="button" className="btn btn-outline-danger"
+                            style={{minWidth: "10vw", width:"40%"}}
+                            onClick={()=>this.vote(false)}>Thumb Down
                     </button>
                 </div>;
                 break;

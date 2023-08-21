@@ -98,6 +98,8 @@ namespace webapi.Controllers
 
             var u = new User(email, password);
 
+            u.authLevel = Authorization.AuthLevel.Admin;
+
             userData.Add(u);
 
             return Ok(new { message = "Account Created" });

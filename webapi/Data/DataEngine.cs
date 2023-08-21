@@ -42,6 +42,10 @@ namespace webapi.Data
             value = table.FindOne(filter);
             return value != null;
         }
+        public int Count(Expression<Func<T, bool>> filter)
+        {
+            return table.Query().Where(filter).Count();
+        }
 
         public void Search(Expression<Func<T, bool>> filter, out T[] values)
         {

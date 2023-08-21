@@ -53,5 +53,6 @@
     {
         public int GameListingId { get; set; }
         public int UserId { get; set; }
+        public bool Positive { get; set; }
     }
 }
