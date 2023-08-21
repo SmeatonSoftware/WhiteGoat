@@ -4,6 +4,7 @@ import BrowseItem from "../components/browseItem";
 import GoatBar from "../components/goatBar";
 import APIRequest from "../shared/request";
 import BetterComponent from "../shared/betterComponent";
+import "../styling/Browse.scss";
 
 export default class Browse extends BetterComponent {
     constructor(props) {
