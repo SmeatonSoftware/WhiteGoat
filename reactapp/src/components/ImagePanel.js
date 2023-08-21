@@ -14,7 +14,7 @@ export default class ImagePanel extends Component{
     }
 
     render() {
-        return <div style={{maxWidth: "30%", float:"left"}}>
+        return <div style={{maxWidth: "100%", float:"left"}}>
             <img style={{maxWidth:"100%"}} src={this.state.images[this.state.idx]}/>
             <button type="button" className="btn btn-primary" onClick={()=>this.changeImage(-1)}>&lt;</button>
             <button type="button" className="btn btn-primary" onClick={()=>this.changeImage(1)}>&gt;</button>

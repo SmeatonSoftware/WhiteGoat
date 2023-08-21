@@ -13,21 +13,30 @@ export default class BrowseItem extends Component {
         return <div className="card border-primary mb-3" style={{width: "100%"}} key={this.state.id}>
             <h3 className="card-header">{this.state.data.title}</h3>
             <div className="card-body">
-                <table>
+                <table style={{width:"100%"}}>
                     <tbody>
                     <tr>
-                        <td style={{verticalAlign: "top"}}>
+                        <td style={{verticalAlign: "top", width: "30vw"}}>
                             <ImagePanel images={this.state.data.imageURLs}/>
+                        </td>
+                        <td>
                             <h5>{this.state.data.summary}</h5>
                             <hr/>
                             <p>
                                 {this.state.data.description}
                             </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                        </td>
+                        <td>
                             <button type="button" className="btn btn-outline-success"
-                                    style={{minWidth: "10vw", marginRight: "1vw"}}>Buy
+                                    style={{minWidth: "10vw", width:"40%", marginRight: "1vw"}}>Buy
                             </button>
                             <button type="button" className="btn btn-outline-info"
-                                    style={{minWidth: "10vw"}}>Download
+                                    style={{minWidth: "10vw", width:"40%"}}>Download
                             </button>
                         </td>
                     </tr>
