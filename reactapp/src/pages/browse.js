@@ -73,7 +73,7 @@ export default class Browse extends BetterComponent {
                 <div style={{height: "140%"}}>
                 {
                     this.state.listingData.map(
-                        x=> <BrowseItem data={x}/>
+                        x=> <BrowseItem data={x} pageChange={this.props.pageChange}/>
                     )
                 }
                 </div>

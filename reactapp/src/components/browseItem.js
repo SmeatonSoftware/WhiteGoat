@@ -1,12 +1,17 @@
 import {Component} from "react";
 import ImagePanel from "./ImagePanel";
+import BetterComponent from "../shared/betterComponent";
 
-export default class BrowseItem extends Component {
+export default class BrowseItem extends BetterComponent {
     constructor(props) {
         super(props);
 
         this.state = {data: this.props.data}
         console.log(this.state);
+    }
+
+    editItem(id){
+        this.props.pageChange(11,this.state.data);
     }
 
     render() {
@@ -29,9 +34,19 @@ export default class BrowseItem extends Component {
                     </tr>
                     <tr>
                         <td>
-
+                            {
+                                this.isAdmin() ? <div>
+                                    <hr/>
+                                    <button type="button" className="btn btn-outline-warning"
+                                            style={{minWidth: "10vw", width:"50%"}}
+                                            onClick={()=>this.editItem(this.state.data.id)}
+                                    >Manage
+                                    </button>
+                                </div>:<div></div>
+                            }
                         </td>
                         <td>
+                            <hr/>
                             <button type="button" className="btn btn-outline-success"
                                     style={{minWidth: "10vw", width:"40%", marginRight: "1vw"}}>Buy
                             </button>
