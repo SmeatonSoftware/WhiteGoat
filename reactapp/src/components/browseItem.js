@@ -7,7 +7,11 @@ export default class BrowseItem extends BetterComponent {
     constructor(props) {
         super(props);
 
-        this.state = {data: this.props.data, votes: 0}
+        this.state = {data: this.props.data, voteRatio: 0}
+    }
+
+    componentFirstMount() {
+        this.getVotes();
     }
 
     editItem(){
@@ -19,7 +23,7 @@ export default class BrowseItem extends BetterComponent {
         var req = new APIRequest("votes/votefor?gameId="+this.state.data.id+"&positive="+positive, "", "GET");
         await req.executeWithCallback(
             (d) => {
-                console.log(d);
+                that.getVotes();
             },
             (d) => {
             }, true);
@@ -30,7 +34,9 @@ export default class BrowseItem extends BetterComponent {
         var req = new APIRequest("votes/get?gameId="+this.state.data.id, "", "GET");
         await req.executeWithCallback(
             (d) => {
-                console.log(d);
+                var pos = d["positive"];
+                var neg = d["negative"];
+                this.setState({voteRatio: pos / (pos+neg) * 100})
             },
             (d) => {
             }, true);
@@ -110,6 +116,9 @@ export default class BrowseItem extends BetterComponent {
                             }
                         </td>
                         <td>
+                            <div className="progress">
+                                <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style={{width: this.state.voteRatio+"%"}}></div>
+                            </div>
                             <hr/>
                             { this.getButtons()}
                         </td>
