@@ -59,7 +59,7 @@ export default class GoatBar extends BetterComponent {
         console.log(pageStack);
 
         localStorage.setItem("pageStack", JSON.stringify(pageStack));
-        this.props.pageChange(_page);
+        this.props.pageChange(_page[0], _page[1]);
     }
 
     render() {
