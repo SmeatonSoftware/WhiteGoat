@@ -91,8 +91,16 @@ export default class BrowseItem extends BetterComponent {
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <hr/>
+                        <td style={{verticalAlign:"bottom"}}>
+                            {
+                                this.isAdmin() ? <div>
+                                    <button type="button" className="btn btn-outline-warning"
+                                            style={{minWidth: "10vw", width:"50%"}}
+                                            onClick={()=>this.editItem(this.state.data.id)}
+                                    >Manage
+                                    </button>
+                                </div>:<div></div>
+                            }
                         </td>
                         <td>
                             <div className="progress">
@@ -114,15 +122,6 @@ export default class BrowseItem extends BetterComponent {
                     </tr>
                     <tr>
                         <td>
-                            {
-                                this.isAdmin() ? <div>
-                                    <button type="button" className="btn btn-outline-warning"
-                                            style={{minWidth: "10vw", width:"50%"}}
-                                            onClick={()=>this.editItem(this.state.data.id)}
-                                    >Manage
-                                    </button>
-                                </div>:<div></div>
-                            }
                         </td>
                         <td>
                             { this.getButtons()}

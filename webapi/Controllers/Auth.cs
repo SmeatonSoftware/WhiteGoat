@@ -29,7 +29,7 @@ namespace webapi.Controllers
         {
             int sid;
             string key;
-            if (Request.Headers.Origin[0].Contains("localhost"))
+            if (Request.Headers.TryGetValue("Origin", out var origin) && origin[0].Contains("localhost"))
             {
                 if (!Request.Headers.TryGetValue("sid", out var _sid) || !Request.Headers.TryGetValue("key", out var _key))
                     return Problem("Missing Auth Headers", statusCode: 401);
