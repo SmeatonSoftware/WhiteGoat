@@ -51,7 +51,7 @@ export default class BrowseItem extends BetterComponent {
             <div className="card-body">
                 <div className={"container"}>
                     <div className={"row"}>
-                        <div className={"col-sm"}>
+                        <div className={"col-sm-5"}>
                             <ImagePanel images={this.state.data.imageURLs}/>
                         </div>
                         <div className={"col-sm"}>
@@ -82,24 +82,32 @@ export default class BrowseItem extends BetterComponent {
 
                     <div className={"row"}>
                         <div className={"col-sm"}>
-                            <button type="button" className="btn btn-outline-success"
-                                    style={{width:"100%"}}>Buy
-                            </button>
-                        </div>
-                        <div className={"col-sm-2"}>
                             {
-                                this.isAdmin() ?
-                                    <button type="button" className="btn btn-outline-warning"
-                                            style={{width: "100%"}}
-                                            onClick={()=>this.editItem(this.state.data.id)}
-                                    ><Wrench/>
-                                    </button>:null
+                                this.state.data.state >= 4 ?
+                                    <button type="button" className="btn btn-outline-success"
+                                            style={{width:"100%"}}>Buy
+                                    </button>
+                                    :null
                             }
                         </div>
+                        {
+                            this.isAdmin() ?
+                            <div className={"col-sm-2"}>
+                                        <button type="button" className="btn btn-outline-warning"
+                                                style={{width: "100%"}}
+                                                onClick={()=>this.editItem(this.state.data.id)}
+                                        ><Wrench/>
+                                        </button>
+                            </div>:null
+                        }
                         <div className={"col-sm"}>
-                            <button type="button" className="btn btn-outline-info"
-                                    style={{width:"100%"}}>Download
-                            </button>
+                            {
+                                this.state.data.state >= 3 ?
+                                    <button type="button" className="btn btn-outline-info"
+                                            style={{width:"100%"}}>Download
+                                    </button>
+                                    :null
+                            }
                         </div>
                     </div>
                 </div>
