@@ -2,6 +2,7 @@ import {Component} from "react";
 import ImagePanel from "./ImagePanel";
 import BetterComponent from "../shared/betterComponent";
 import APIRequest from "../shared/request";
+import {HandThumbsDown, HandThumbsDownFill, HandThumbsUp, HandThumbsUpFill, Wrench} from "react-bootstrap-icons";
 
 export default class BrowseItem extends BetterComponent {
     constructor(props) {
@@ -42,49 +43,9 @@ export default class BrowseItem extends BetterComponent {
             }, true);
     }
 
-    getButtons(){
-        var _buttons = <div></div>
-
-        var state = this.state.data.state;
-
-        switch (state){
-
-            case 3:
-                _buttons = <div>
-                    <button type="button" className="btn btn-outline-info"
-                            style={{minWidth: "fit-content", width:"40%"}}>Download
-                    </button>
-                </div>;
-                break;
-
-            case 4:
-                _buttons = <div>
-                    <button type="button" className="btn btn-outline-success"
-                            style={{minWidth: "fit-content", width:"40%", marginRight: "5%"}}>Buy
-                    </button>
-                    <button type="button" className="btn btn-outline-info"
-                            style={{minWidth: "fit-content", width:"40%"}}>Download
-                    </button>
-                </div>;
-                break;
-        }
-
-        return _buttons;
-    }
-
     render() {
         return <div className="card border-primary mb-3" style={{width: "100%"}} key={this.state.id}>
             <h3 className="card-header">
-                {
-                    this.isAdmin() ?
-                        <button type="button" className="btn btn-outline-warning"
-                                style={{float: "left"}}
-                                onClick={()=>this.editItem(this.state.data.id)}
-                        ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-wrench" viewBox="0 0 16 16">
-                            <path d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364L.102 2.223zm13.37 9.019.528.026.287.445.445.287.026.529L15 13l-.242.471-.026.529-.445.287-.287.445-.529.026L13 15l-.471-.242-.529-.026-.287-.445-.445-.287-.026-.529L11 13l.242-.471.026-.529.445-.287.287-.445.529-.026L13 11l.471.242z"/>
-                        </svg>
-                        </button>:null
-                }
                 {this.state.data.title}
             </h3>
             <div className="card-body">
@@ -104,27 +65,41 @@ export default class BrowseItem extends BetterComponent {
 
                     <div className={"row"}>
                         <div className={"col-sm"}>
-                            <div className="progress">
+                            <button type="button" className="btn btn-outline-success"
+                                    style={{float:"left", marginRight: "1%"}}
+                                    onClick={()=>this.vote(true)}><HandThumbsUp/>{this.state.pos}
+                            </button>
+                            <button type="button" className="btn btn-outline-danger"
+                                    style={{float:"right", marginLeft: "1%"}}
+                                    onClick={()=>this.vote(false)}>{this.state.neg}<HandThumbsDown/>
+                            </button>
+                            <div className="progress" style={{height: "100%"}}>
                                 <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style={{width: this.state.voteRatio+"%"}}></div>
                                 <div className="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style={{width: 100-this.state.voteRatio+"%"}}></div>
-                            </div>
-                            <small id="emailHelp" className="form-text">{this.state.pos} : {this.state.neg}</small>
-                            <div>
-                                <button type="button" className="btn btn-outline-success"
-                                        style={{minWidth: "10vw", width:"40%", marginRight:"5%"}}
-                                        onClick={()=>this.vote(true)}>Thumb Up
-                                </button>
-                                <button type="button" className="btn btn-outline-danger"
-                                        style={{minWidth: "10vw", width:"40%"}}
-                                        onClick={()=>this.vote(false)}>Thumb Down
-                                </button>
                             </div>
                         </div>
                     </div>
 
                     <div className={"row"}>
                         <div className={"col-sm"}>
-                            { this.getButtons()}
+                            <button type="button" className="btn btn-outline-success"
+                                    style={{width:"100%"}}>Buy
+                            </button>
+                        </div>
+                        <div className={"col-sm-2"}>
+                            {
+                                this.isAdmin() ?
+                                    <button type="button" className="btn btn-outline-warning"
+                                            style={{width: "100%"}}
+                                            onClick={()=>this.editItem(this.state.data.id)}
+                                    ><Wrench/>
+                                    </button>:null
+                            }
+                        </div>
+                        <div className={"col-sm"}>
+                            <button type="button" className="btn btn-outline-info"
+                                    style={{width:"100%"}}>Download
+                            </button>
                         </div>
                     </div>
                 </div>
