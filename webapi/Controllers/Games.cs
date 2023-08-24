@@ -12,7 +12,7 @@ namespace webapi.Controllers
     [ApiController]
     public class Games : ControllerBase
     {
-        private DataEngine<GameListing>? gameListingEngine;
+        private DataEngine<GameListing> gameListingEngine;
 
         public Games(DataEngine<GameListing> _gameListingEngine)
         {

@@ -18,10 +18,19 @@
     public class PrintRelease : DataClass
     {
         public string DownloadURL { get; set; }
+        public string RevisionTitle { get; set; }
+        public string RevisionDescritpion { get; set; }
         public int PrintPages { get; set; }
         public int MainRevision { get; set; }
         public int SubRevision { get; set; }
         public int GameListingId { get; set; }
+        public int CreatorUserId { get; set; }
+
+        public void SetDefaults(User u)
+        {
+            Id = 0;
+            CreatorUserId = u.Id;
+        }
     }
 
     public class QualityRelease : DataClass

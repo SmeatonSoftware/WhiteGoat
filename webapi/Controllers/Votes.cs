@@ -12,10 +12,10 @@ namespace webapi.Controllers
     [ApiController]
     public class Votes : ControllerBase
     {
-        private DataEngine<GameListing>? gameListingEngine;
-        private DataEngine<GameVote>? gameVoteEngine;
+        private DataEngine<GameListing> gameListingEngine;
+        private DataEngine<GameVote> gameVoteEngine;
 
-        public Votes(DataEngine<GameListing> _gameListingEngine, DataEngine<GameVote>? _gameVoteEngine)
+        public Votes(DataEngine<GameListing> _gameListingEngine, DataEngine<GameVote> _gameVoteEngine)
         {
             gameListingEngine = _gameListingEngine;
             gameVoteEngine = _gameVoteEngine;
